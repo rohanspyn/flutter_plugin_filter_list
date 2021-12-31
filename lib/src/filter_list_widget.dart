@@ -396,40 +396,48 @@ class _FilterListWidgetState<T> extends State<FilterListWidget<T>> {
     _listData!.forEach(
       (item) {
         var selectedText = widget.validateSelectedItem(_selectedListData, item);
-        choices.add(
-          ChoiceChipWidget(
-            choiceChipBuilder: widget.choiceChipBuilder,
-            item: item,
-            onSelected: (value) {
-              setState(
-                () {
-                  if (widget.enableOnlySingleSelection!) {
-                    _selectedListData.clear();
-                    _selectedListData.add(item);
-                  } else {
-                    if (selectedText) {
-                      if (widget.validateRemoveItem != null) {
-                        var shouldDelete =
-                            widget.validateRemoveItem!(_selectedListData, item);
-                        _selectedListData = shouldDelete;
-                      } else {
-                        _selectedListData.remove(item);
-                      }
-                    } else {
+        if (item is String && item.contains('>')) {
+          choices.add(Container(
+              padding: EdgeInsets.all(10),
+              width: widget.width,
+              child: Text(item.replaceAll(RegExp(r'[^\w\s]+'), ''))));
+        } else {
+          choices.add(
+            ChoiceChipWidget(
+              choiceChipBuilder: widget.choiceChipBuilder,
+              item: item,
+              onSelected: (value) {
+                setState(
+                  () {
+                    if (widget.enableOnlySingleSelection!) {
+                      _selectedListData.clear();
                       _selectedListData.add(item);
+                    } else {
+                      if (selectedText) {
+                        if (widget.validateRemoveItem != null) {
+                          var shouldDelete = widget.validateRemoveItem!(
+                              _selectedListData, item);
+                          _selectedListData = shouldDelete;
+                        } else {
+                          _selectedListData.remove(item);
+                        }
+                      } else {
+                        _selectedListData.add(item);
+                      }
                     }
-                  }
-                },
-              );
-            },
-            selected: selectedText,
-            selectedTextBackgroundColor: widget.selectedTextBackgroundColor,
-            unselectedTextBackgroundColor: widget.unselectedTextbackGroundColor,
-            selectedChipTextStyle: widget.selectedChipTextStyle,
-            unselectedChipTextStyle: widget.unselectedChipTextStyle,
-            text: widget.choiceChipLabel(item),
-          ),
-        );
+                  },
+                );
+              },
+              selected: selectedText,
+              selectedTextBackgroundColor: widget.selectedTextBackgroundColor,
+              unselectedTextBackgroundColor:
+                  widget.unselectedTextbackGroundColor,
+              selectedChipTextStyle: widget.selectedChipTextStyle,
+              unselectedChipTextStyle: widget.unselectedChipTextStyle,
+              text: widget.choiceChipLabel(item),
+            ),
+          );
+        }
       },
     );
     choices.add(
