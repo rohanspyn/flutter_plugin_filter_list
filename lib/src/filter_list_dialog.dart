@@ -4,6 +4,7 @@ import 'package:filter_list/src/widget/choice_chip_widget.dart';
 import 'package:filter_list/src/widget/search_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 part 'filter_list_widget.dart';
 
