@@ -321,7 +321,34 @@ class _FilterListWidgetState<T> extends State<FilterListWidget<T>> {
               children: <Widget>[
                 Expanded(
                   flex: 1,
-                  child: Container(),
+                  child: InkWell(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      onTap: () {
+                        Navigator.pop(context, null);
+                      },
+                      child: widget.hideCloseIcon
+                          ? SizedBox()
+                          : widget.headerCloseIcon ??
+                              Container(
+                                  alignment: Alignment.center,
+                                  height: 24,
+                                  width: 24,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(24),
+                                      color: Color.fromRGBO(254, 64, 46, .32)),
+                                  child: Container(
+                                      alignment: Alignment.center,
+                                      height: 16,
+                                      width: 16,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: Colors.white, width: 2),
+                                          borderRadius:
+                                              BorderRadius.circular(16),
+                                          color:
+                                              Color.fromRGBO(254, 64, 46, 1)),
+                                      child: Icon(Icons.clear_rounded,
+                                          size: 12, color: Colors.white)))),
                 ),
                 Expanded(
                   flex: 6,
@@ -339,27 +366,7 @@ class _FilterListWidgetState<T> extends State<FilterListWidget<T>> {
                 ),
                 Expanded(
                   flex: 1,
-                  child: InkWell(
-                    borderRadius: BorderRadius.all(Radius.circular(30)),
-                    onTap: () {
-                      Navigator.pop(context, null);
-                    },
-                    child: widget.hideCloseIcon
-                        ? SizedBox()
-                        : widget.headerCloseIcon ??
-                            Container(
-                              height: 25,
-                              width: 25,
-                              decoration: BoxDecoration(
-                                  border:
-                                      Border.all(color: widget.closeIconColor!),
-                                  shape: BoxShape.circle),
-                              child: Icon(
-                                Icons.close,
-                                color: widget.closeIconColor,
-                              ),
-                            ),
-                  ),
+                  child: Container(),
                 ),
               ],
             ),
@@ -400,7 +407,11 @@ class _FilterListWidgetState<T> extends State<FilterListWidget<T>> {
           choices.add(Container(
               padding: EdgeInsets.all(10),
               width: widget.width,
-              child: Text(item.replaceAll(RegExp(r'[^\w\s]+'), ''))));
+              child: Text(item.replaceAll(RegExp(r'[^\w\s]+'), ''),
+                  style: GoogleFonts.ubuntu(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white))));
         } else {
           choices.add(
             ChoiceChipWidget(
@@ -483,6 +494,7 @@ class _FilterListWidgetState<T> extends State<FilterListWidget<T>> {
       child: Container(
         height: 45,
         margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 10),
         alignment: Alignment.center,
         child: Container(
           decoration: widget.controlContainerDecoration,

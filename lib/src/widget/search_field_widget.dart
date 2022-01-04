@@ -25,9 +25,10 @@ class SearchFieldWidget extends StatelessWidget {
         child: TextField(
           onChanged: onChanged,
           style: searchFieldTextStyle ??
-              TextStyle(fontSize: 18, color: Colors.black87),
+              TextStyle(fontSize: 14, color: Color.fromRGBO(152, 181, 255, 1)),
           decoration: InputDecoration(
-            prefixIcon: Icon(Icons.search, color: Colors.black38),
+            prefixIcon: Icon(Icons.search_rounded,
+                color: Color.fromRGBO(152, 181, 255, 1)),
             hintText: searchFieldHintText,
             border: InputBorder.none,
           ),
