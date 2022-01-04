@@ -312,7 +312,7 @@ class _FilterListWidgetState<T> extends State<FilterListWidget<T>> {
               ],
       ),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -322,33 +322,15 @@ class _FilterListWidgetState<T> extends State<FilterListWidget<T>> {
                 Expanded(
                   flex: 1,
                   child: InkWell(
-                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      // borderRadius: BorderRadius.all(Radius.circular(30)),
                       onTap: () {
                         Navigator.pop(context, null);
                       },
                       child: widget.hideCloseIcon
                           ? SizedBox()
                           : widget.headerCloseIcon ??
-                              Container(
-                                  alignment: Alignment.center,
-                                  height: 24,
-                                  width: 24,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(24),
-                                      color: Color.fromRGBO(254, 64, 46, .32)),
-                                  child: Container(
-                                      alignment: Alignment.center,
-                                      height: 16,
-                                      width: 16,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Colors.white, width: 2),
-                                          borderRadius:
-                                              BorderRadius.circular(16),
-                                          color:
-                                              Color.fromRGBO(254, 64, 46, 1)),
-                                      child: Icon(Icons.clear_rounded,
-                                          size: 12, color: Colors.white)))),
+                              Icon(Icons.clear_rounded,
+                                  size: 24, color: Colors.white)),
                 ),
                 Expanded(
                   flex: 6,
@@ -409,7 +391,7 @@ class _FilterListWidgetState<T> extends State<FilterListWidget<T>> {
               width: widget.width,
               child: Text(item.replaceAll(RegExp(r'[^\w\s]+'), ''),
                   style: GoogleFonts.ubuntu(
-                      fontSize: 12,
+                      fontSize: 14,
                       fontWeight: FontWeight.w600,
                       color: Colors.white))));
         } else {
@@ -554,6 +536,9 @@ class _FilterListWidgetState<T> extends State<FilterListWidget<T>> {
                               ? Theme.of(context).dividerColor
                               : Theme.of(context).buttonColor),
                   radius: widget.buttonRadius),
+              SizedBox(
+                width: 4,
+              ),
             ],
           ),
         ),
