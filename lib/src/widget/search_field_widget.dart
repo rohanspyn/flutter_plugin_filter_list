@@ -16,28 +16,34 @@ class SearchFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.transparent,
-      child: Container(
-        margin: EdgeInsets.all(4),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
-            color: searchFieldBackgroundColor),
-        child: TextField(
-          onChanged: onChanged,
-          textAlign: TextAlign.start,
-          textAlignVertical: TextAlignVertical.center,
-          style: searchFieldTextStyle ??
-              TextStyle(fontSize: 14, color: Color.fromRGBO(152, 181, 255, 1)),
-          decoration: InputDecoration(
-            prefixIcon: Icon(Icons.search_rounded,
-                color: Color.fromRGBO(152, 181, 255, 1)),
-            hintText: searchFieldHintText,
-            hintStyle: TextStyle(
-                fontSize: 14, color: Color.fromRGBO(152, 181, 255, 1)),
-            border: InputBorder.none,
+        color: Colors.transparent,
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          height: 36,
+          child: TextField(
+            textAlign: TextAlign.start,
+            style: searchFieldTextStyle ??
+                TextStyle(
+                    fontSize: 14, color: Color.fromRGBO(122, 122, 146, 1)),
+            decoration: InputDecoration(
+              prefixIcon: Icon(
+                Icons.search_outlined,
+                size: 16,
+                color: Color.fromRGBO(122, 122, 146, 1),
+              ),
+              hintText: searchFieldHintText,
+              hintStyle: TextStyle(
+                  fontSize: 14, color: Color.fromRGBO(122, 122, 146, 1)),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide.none,
+              ),
+              contentPadding: EdgeInsets.fromLTRB(0, 4, 0, 0),
+              filled: true,
+              fillColor: searchFieldBackgroundColor,
+            ),
+            onChanged: onChanged,
           ),
-        ),
-      ),
-    );
+        ));
   }
 }

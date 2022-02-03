@@ -46,9 +46,14 @@ class ChoiceChipWidget<T> extends StatelessWidget {
         : Container(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: ChoiceChip(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)),
               backgroundColor: selected!
                   ? selectedTextBackgroundColor
                   : unselectedTextBackgroundColor,
+              side: selected!
+                  ? BorderSide.none
+                  : BorderSide(color: Colors.white, width: 1),
               selectedColor: selected!
                   ? selectedTextBackgroundColor
                   : unselectedTextBackgroundColor,

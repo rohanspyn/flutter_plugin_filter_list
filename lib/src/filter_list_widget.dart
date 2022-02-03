@@ -330,7 +330,7 @@ class _FilterListWidgetState<T> extends State<FilterListWidget<T>> {
                           ? SizedBox()
                           : widget.headerCloseIcon ??
                               Icon(Icons.clear_rounded,
-                                  size: 24, color: Colors.white)),
+                                  size: 24, color: widget.closeIconColor)),
                 ),
                 Expanded(
                   flex: 6,
@@ -390,10 +390,10 @@ class _FilterListWidgetState<T> extends State<FilterListWidget<T>> {
               padding: EdgeInsets.all(10),
               width: widget.width,
               child: Text(item.replaceAll(RegExp(r'[^\w\s]+'), ''),
-                  style: GoogleFonts.ubuntu(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white))));
+                  style: GoogleFonts.roboto(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: -0.43))));
         } else {
           choices.add(
             ChoiceChipWidget(
